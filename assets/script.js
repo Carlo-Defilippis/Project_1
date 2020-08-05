@@ -1,5 +1,3 @@
-$(document).ready(function() {
-
 var settings = {
 	"async": true,
 	"crossDomain": true,
@@ -28,44 +26,84 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
 	console.log(response);
+	
 });
 
-// Youtube API
-// Your use of the YouTube API must comply with the Terms of Service:
-// https://developers.google.com/youtube/terms
-// Called automatically when JavaScript client library is loaded.
+// Youtube api
+// YOU WILL NEED TO ADD YOUR OWN API KEY IN QUOTES ON LINE 5, EVEN FOR THE PREVIEW TO WORK.
+// 
+// GET YOUR API HERE https://console.developers.google.com/apis/api
 
-var youtubeAPI = "AIzaSyAVriwBT3wQUQzFJiOOpr1P2e2KImIc5o0"
-var youtube = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=php&key=" + youtubeAPI
 
-function onClientLoad() {
-    gapi.client.load('youtube', 'v3', onYouTubeApiLoad);
-}
-// Called automatically when YouTube API interface is loaded (see line 9).
-function onYouTubeApiLoad() {
-    gapi.client.setApiKey(youtubeAPI);
-}
- 
-// Called when the search button is clicked in the html code
-$(".searchBTN").on(function() {
-    var query = $('#query').val();
-    // Use the JavaScript client library to create a search.list() API call.
-    var request = gapi.client.youtube.search.list({
+// https://developers.google.com/youtube/v3/docs/playlistItems/list
+
+// https://console.developers.google.com/apis/api/youtube.googleapis.com/overview?project=webtut-195115&duration=PT1H
+
+// <iframe width="560" height="315" src="https://www.youtube.com/embed/qxWrnhZEuRU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+// https://i.ytimg.com/vi/qxWrnhZEuRU/mqdefault.jpg
+
+
+$(document).ready(function () {
+
+    var key = 'AIzaSyAVriwBT3wQUQzFJiOOpr1P2e2KImIc5o0';
+    var playlistId = 'PL2fnLUTsNyq7A335zB_RpOzu7hEUcSJbB';
+    var URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
+
+
+    var options = {
         part: 'snippet',
-        q:query
+        key: key,
+        maxResults: 20,
+        playlistId: playlistId
+    }
+
+    loadVids();
+
+    function loadVids() {
+        $.getJSON(URL, options, function (data) {
+            var id = data.items[0].snippet.resourceId.videoId;
+            mainVid(id);
+            resultsLoop(data);
+        });
+    }
+
+    function mainVid(id) {
+        $('#video').html(`
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/${id}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+				`);
+    }
+
+		
+    function resultsLoop(data) {
+
+        $.each(data.items, function (i, item) {
+
+            var thumb = item.snippet.thumbnails.medium.url;
+            var title = item.snippet.title;
+            var desc = item.snippet.description.substring(0, 100);
+            var vid = item.snippet.resourceId.videoId;
+
+
+            $('main').append(`
+							<article class="item" data-key="${vid}">
+
+								<img src="${thumb}" alt="" class="thumb">
+								<div class="details">
+									<h4>${title}</h4>
+									<p>${desc}</p>
+								</div>
+
+							</article>
+						`);
+        });
+    }
+
+		// CLICK EVENT
+    $('.youtubeSearch').on('click', 'article', function () {
+        var id = $(this).attr('data-key');
+        mainVid(id);
     });
-});
-
-    // Send the request to the API server, call the onSearchResponse function when the data is returned
-    request.execute(onSearchResponse);
-
-// Triggered by this line: request.execute(onSearchResponse);
-function onSearchResponse(response) {
-    var responseString = JSON.stringify(response, '', 2);
-    document.getElementById('response').innerHTML = responseString;
-}
-
-onClientLoad()
 
 
 });
