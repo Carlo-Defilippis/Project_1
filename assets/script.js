@@ -1,6 +1,11 @@
 $(document).ready(function () {
 
 
+
+
+
+function twitterAPI() {
+
 var settings = {
 	"async": true,
 	"crossDomain": true,
@@ -14,8 +19,10 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
 	console.log(response);
- $("#twitterResult1").text(JSON.stringify(response));
-});
+//  ;
+}); $("#twitterResult").text(JSON.stringify(response));
+
+}
 
 var settings = {
 	"async": true,
