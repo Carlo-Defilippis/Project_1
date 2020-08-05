@@ -20,21 +20,33 @@ $(document).ready(function () {
     
     $.ajax(settings).done(function (response) {
       var convertedXML = xmlToJson(response);
-      console.log(convertedXML.rss.channel)
-      console.log(convertedXML.rss.channel.item[0])
+
+      // Twitter account
+      
+      console.log(title.charAt(10).toUpperCase() + title.slice(11, -2));
+
+      for (var i = 0; i < 3; i++) {
+      function callTweets(i) {
+      var title = JSON.stringify(convertedXML.rss.channel.title);
+      var timeAgo = JSON.stringify(convertedXML.rss.channel.item[i].description);
+      var tweet = JSON.stringify(convertedXML.rss.channel.item[i].title)
+      var link = JSON.stringify(convertedXML.rss.channel.item[i].link)
+
+
+      // Tweet
+      console.log(tweet.charAt(11).toUpperCase() + tweet.slice(12, -2))
       // How along ago was tweet
-      console.log(convertedXML.rss.channel.item[0].description)
+      console.log(timeAgo.charAt(10).toUpperCase() + timeAgo.slice(11, -2))
       // Link
-      console.log(convertedXML.rss.channel.item[0].title)
-    
-    //   embedVideo(response);
-    //  ;
+      console.log(link.charAt(10).toLowerCase() + link.slice(11, -2))
+      }
+      callTweets()
+    }
+
     }); 
 
 
     // XML to JSON
-    var xmlJSONConvert = [];
-
     function xmlToJson(xml) {
 	
         // Create the return object
