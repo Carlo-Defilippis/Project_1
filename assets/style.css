@@ -1,0 +1,39 @@
+.header {
+    padding: 50px;
+    background-color: #2C2F33;
+}
+
+.mainGrid {
+    background-color: whitesmoke; 
+    padding-top: 50px;
+}
+
+.Twitter {
+    background-color: #1DA1F2;
+    color: white;
+}
+
+
+
+.GIPHY {
+    background-color: rgba(18,18,18,1);
+    color: white;
+}
+
+h1, h2, h3 {
+    text-align: center;
+    color: white;
+}
+
+.resultsCard {
+    border-radius: 10px;
+    padding: 20px 0px;
+}
+
+.footer {
+    text-align: center;
+    background-color: #2C2F33;
+    color: white;
+    padding: 20px;
+    margin-top: 20px;
+}
