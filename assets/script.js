@@ -1,21 +1,28 @@
 $(document).ready(function () {
 
 
-var settings = {
-	"async": true,
-	"crossDomain": true,
-	"url": "https://e1yr-twitfeed-v1.p.rapidapi.com/feed.api?id=google",
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "e1yr-twitfeed-v1.p.rapidapi.com",
-		"x-rapidapi-key": "728344f90amshee9ec3138f80f9ep14a9d1jsn0555e41223c3"
-	}
-}
 
-$.ajax(settings).done(function (response) {
-	console.log(response);
- $("#twitterResult1").text(JSON.stringify(response));
-});
+  function twitterAPI() {
+
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://e1yr-twitfeed-v1.p.rapidapi.com/feed.api?id=google",
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "e1yr-twitfeed-v1.p.rapidapi.com",
+        "x-rapidapi-key": "728344f90amshee9ec3138f80f9ep14a9d1jsn0555e41223c3"
+      }
+    }
+    
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+    //  ;
+    }); $("#twitterResult").text(JSON.stringify(response));
+    
+    }
+
+    
 
 var settings = {
 	"async": true,
@@ -30,6 +37,7 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
     console.log(response);
+    $("giphyResult1").text(JSON.stringify(response));
 
 //    response.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
 });
@@ -50,19 +58,21 @@ $.ajax(settings).done(function (response) {
 
 // Youtube API TEST
 
+
+
 var youtubeKey = "AIzaSyAVriwBT3wQUQzFJiOOpr1P2e2KImIc5o0"
 var urlYoutube = "https://www.googleapis.com/youtube/v3/search?part=id&q=tuto&type=video&key=" + youtubeKey
 
 // Request Function
-function getVideo() {
+function getVideo(searchInfo) {
     console.log("Get Video was called")
     $.ajax({
       type: 'GET',
       url: urlYoutube,
       data: {
-          q: "cats",
+          q: searchInfo,
           part: 'snippet',
-          maxResults: 1,
+          maxResults: 3,
           type: 'video',
           videoEmbeddable: true,
       },
@@ -79,13 +89,25 @@ function getVideo() {
 
 // Using the Data Received from our Request
 function embedVideo(data) {
-    $('iframe').attr('src', 'https://www.youtube.com/embed/' + data.items[0].id.videoId)
-    $('h3').text(data.items[0].snippet.title)
-    $('.description').text(data.items[0].snippet.description)
+    $('.embed1').attr('src', 'https://www.youtube.com/embed/' + data.items[0].id.videoId)
+    $('.embed2').attr('src', 'https://www.youtube.com/embed/' + data.items[1].id.videoId)
+    $('.embed3').attr('src', 'https://www.youtube.com/embed/' + data.items[2].id.videoId)
+    $('.descriptionTitle1').text(data.items[0].snippet.title)
+    $('.descriptionTitle2').text(data.items[1].snippet.title)
+    $('.descriptionTitle3').text(data.items[2].snippet.title)
+    $('.description1').text(data.items[0].snippet.description)
+    $('.description2').text(data.items[1].snippet.description)
+    $('.description3').text(data.items[2].snippet.description)
 }
 
 // Call the function to search
-getVideo();
+
+
+$(".searchBtn").on("click", function() {
+    var textBox = $(".searchInput").val()
+    getVideo(textBox);
+    console.log(textBox)
+})
 
 
 });
