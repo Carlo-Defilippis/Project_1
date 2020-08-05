@@ -2,8 +2,11 @@ $(document).ready(function () {
 
 
 
-  function twitterAPI() {
 
+  function twitterAPI(searchTerm) {
+
+
+    twitterURL = "https://e1yr-twitfeed-v1.p.rapidapi.com/feed.api?id=" + searchTerm
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -16,13 +19,65 @@ $(document).ready(function () {
     }
     
     $.ajax(settings).done(function (response) {
-      console.log(response);
+      var convertedXML = xmlToJson(response);
+      console.log(convertedXML.rss.channel)
+      console.log(convertedXML.rss.channel.item[0])
+      // How along ago was tweet
+      console.log(convertedXML.rss.channel.item[0].description)
+      // Link
+      console.log(convertedXML.rss.channel.item[0].title)
+    
+    //   embedVideo(response);
     //  ;
-    }); $("#twitterResult").text(JSON.stringify(response));
+    }); 
+
+
+    // XML to JSON
+    var xmlJSONConvert = [];
+
+    function xmlToJson(xml) {
+	
+        // Create the return object
+        var obj = {};
+    
+        if (xml.nodeType == 1) { // element
+            // do attributes
+            if (xml.attributes.length > 0) {
+            obj["@attributes"] = {};
+                for (var j = 0; j < xml.attributes.length; j++) {
+                    var attribute = xml.attributes.item(j);
+                    obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+                }
+            }
+        } else if (xml.nodeType == 3) { // text
+            obj = xml.nodeValue;
+        }
+    
+        // do children
+        if (xml.hasChildNodes()) {
+            for(var i = 0; i < xml.childNodes.length; i++) {
+                var item = xml.childNodes.item(i);
+                var nodeName = item.nodeName;
+                if (typeof(obj[nodeName]) == "undefined") {
+                    obj[nodeName] = xmlToJson(item);
+                } else {
+                    if (typeof(obj[nodeName].push) == "undefined") {
+                        var old = obj[nodeName];
+                        obj[nodeName] = [];
+                        obj[nodeName].push(old);
+                    }
+                    obj[nodeName].push(xmlToJson(item));
+                }
+            }
+        }
+        return obj;
+    };
+
+    // $("#twitterResult").text(JSON.stringify(response));
     
     }
 
-    
+    twitterAPI()
 
 var settings = {
 	"async": true,
@@ -37,7 +92,7 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
     console.log(response);
-    $("giphyResult1").text(JSON.stringify(response));
+   
 
 //    response.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
 });
@@ -100,12 +155,22 @@ function embedVideo(data) {
     $('.description3').text(data.items[2].snippet.description)
 }
 
-// Call the function to search
-
+function twitterEmbed(data) {
+    $('.embed1').attr('src', 'https://www.youtube.com/embed/' + data.items[0].id.videoId)
+    $('.embed2').attr('src', 'https://www.youtube.com/embed/' + data.items[1].id.videoId)
+    $('.embed3').attr('src', 'https://www.youtube.com/embed/' + data.items[2].id.videoId)
+    $('.descriptionTitle1').text(data.items[0].snippet.title)
+    $('.descriptionTitle2').text(data.items[1].snippet.title)
+    $('.descriptionTitle3').text(data.items[2].snippet.title)
+    $('.description1').text(data.items[0].snippet.description)
+    $('.description2').text(data.items[1].snippet.description)
+    $('.description3').text(data.items[2].snippet.description)
+}
 
 $(".searchBtn").on("click", function() {
     var textBox = $(".searchInput").val()
     getVideo(textBox);
+    twitterAPI(textBox);
     console.log(textBox)
 })
 

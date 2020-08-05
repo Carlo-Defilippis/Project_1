@@ -13,11 +13,23 @@
     color: white;
 }
 
-
-
 .GIPHY {
     background-color: rgba(18,18,18,1);
     color: white;
+}
+
+.YouTube {
+    text-align: center;
+}
+
+.descriptionTitle2, .descriptionTitle3, .descriptionTitle1, .titleYouTube {
+    background-color: #FF0000;
+    border-radius: 10px;
+}
+
+
+.embed1, .embed2, .embed3 {
+    margin: 0 auto;
 }
 
 h1, h2, h3 {
@@ -36,4 +48,9 @@ h1, h2, h3 {
     color: white;
     padding: 20px;
     margin-top: 20px;
+}
+
+.three wide column {
+    padding-top: 10px;
+    font-size: 100px;
 }
