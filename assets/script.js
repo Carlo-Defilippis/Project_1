@@ -1,30 +1,6 @@
 $(document).ready(function () {
 
 
-<<<<<<< HEAD
-
-
-
-function twitterAPI() {
-
-var settings = {
-	"async": true,
-	"crossDomain": true,
-	"url": "https://e1yr-twitfeed-v1.p.rapidapi.com/feed.api?id=google",
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "e1yr-twitfeed-v1.p.rapidapi.com",
-		"x-rapidapi-key": "728344f90amshee9ec3138f80f9ep14a9d1jsn0555e41223c3"
-	}
-}
-
-$.ajax(settings).done(function (response) {
-	console.log(response);
-//  ;
-}); $("#twitterResult").text(JSON.stringify(response));
-
-}
-=======
 
   function twitterAPI() {
 
@@ -47,7 +23,6 @@ $.ajax(settings).done(function (response) {
     }
 
     
->>>>>>> 7a36783e08fe83198f482e49cffdf872ef681796
 
 var settings = {
 	"async": true,
