@@ -1,3 +1,7 @@
+$(document).ready(function () {
+
+response.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
+
 var settings = {
 	"async": true,
 	"crossDomain": true,
@@ -10,7 +14,8 @@ var settings = {
 }
 
 $.ajax(settings).done(function (response) {
-	console.log(response);
+    console.log(response);
+    response.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
 });
 
 var settings = {
@@ -25,7 +30,8 @@ var settings = {
 }
 
 $.ajax(settings).done(function (response) {
-	console.log(response);
+    console.log(response);
+    response.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
 	
 });
 
@@ -43,67 +49,43 @@ $.ajax(settings).done(function (response) {
 
 // https://i.ytimg.com/vi/qxWrnhZEuRU/mqdefault.jpg
 
-
-$(document).ready(function () {
-
-    var key = 'AIzaSyAVriwBT3wQUQzFJiOOpr1P2e2KImIc5o0';
-    var playlistId = 'PL2fnLUTsNyq7A335zB_RpOzu7hEUcSJbB';
-    var URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
+// Youtube API TEST
 
 
-    var options = {
-        part: 'snippet',
-        key: key,
-        maxResults: 20,
-        playlistId: playlistId
-    }
 
-    loadVids();
-
-    function loadVids() {
-        $.getJSON(URL, options, function (data) {
-            var id = data.items[0].snippet.resourceId.videoId;
-            mainVid(id);
-            resultsLoop(data);
-        });
-    }
-
-    function mainVid(id) {
-        $('#video').html(`
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/${id}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-				`);
-    }
-
-		
-    function resultsLoop(data) {
-
-        $.each(data.items, function (i, item) {
-
-            var thumb = item.snippet.thumbnails.medium.url;
-            var title = item.snippet.title;
-            var desc = item.snippet.description.substring(0, 100);
-            var vid = item.snippet.resourceId.videoId;
-
-
-            $('main').append(`
-							<article class="item" data-key="${vid}">
-
-								<img src="${thumb}" alt="" class="thumb">
-								<div class="details">
-									<h4>${title}</h4>
-									<p>${desc}</p>
-								</div>
-
-							</article>
-						`);
-        });
-    }
-
-		// CLICK EVENT
-    $('.youtubeSearch').on('click', 'article', function () {
-        var id = $(this).attr('data-key');
-        mainVid(id);
+// Request Function
+function getVideo() {
+    $.ajax({
+      type: 'GET',
+      url: 'https://www.googleapis.com/youtube/v3/search',
+      data: {
+          key: 'AIzaSyAVriwBT3wQUQzFJiOOpr1P2e2KImIc5o0',
+          q: "cats",
+          part: 'snippet',
+          maxResults: 1,
+          type: 'video',
+          videoEmbeddable: true,
+      },
+      success: function(data){
+          embedVideo(data)
+          console.log(data)
+          data.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
+      },
+      error: function(response){
+          console.log("Request Failed");
+      }
     });
+  }
+
+// Using the Data Received from our Request
+function embedVideo(data) {
+    $('iframe').attr('src', 'https://www.youtube.com/embed/' + data.items[0].id.videoId)
+    $('h3').text(data.items[0].snippet.title)
+    $('.description').text(data.items[0].snippet.description)
+}
+
+// Call the function to search
+getVideo();
 
 
 });
