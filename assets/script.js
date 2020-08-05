@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-response.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
 
 var settings = {
 	"async": true,
@@ -9,13 +8,13 @@ var settings = {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "e1yr-twitfeed-v1.p.rapidapi.com",
-		"x-rapidapi-key": "7bdb4eda7amsh95a13fc78c869e1p1a5fe1jsna086c268c24f"
+		"x-rapidapi-key": "728344f90amshee9ec3138f80f9ep14a9d1jsn0555e41223c3"
 	}
 }
 
 $.ajax(settings).done(function (response) {
-    console.log(response);
-    response.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
+	console.log(response);
+ $("#twitterResult1").text(JSON.stringify(response));
 });
 
 var settings = {
@@ -31,8 +30,8 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
     console.log(response);
-    response.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
-	
+
+//    response.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
 });
 
 // Youtube api
@@ -51,15 +50,16 @@ $.ajax(settings).done(function (response) {
 
 // Youtube API TEST
 
-
+var youtubeKey = "AIzaSyAVriwBT3wQUQzFJiOOpr1P2e2KImIc5o0"
+var urlYoutube = "https://www.googleapis.com/youtube/v3/search?part=id&q=tuto&type=video&key=" + youtubeKey
 
 // Request Function
 function getVideo() {
+    console.log("Get Video was called")
     $.ajax({
       type: 'GET',
-      url: 'https://www.googleapis.com/youtube/v3/search',
+      url: urlYoutube,
       data: {
-          key: 'AIzaSyAVriwBT3wQUQzFJiOOpr1P2e2KImIc5o0',
           q: "cats",
           part: 'snippet',
           maxResults: 1,
@@ -67,9 +67,9 @@ function getVideo() {
           videoEmbeddable: true,
       },
       success: function(data){
-          embedVideo(data)
-          console.log(data)
-          data.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
+        console.log(data)  
+        embedVideo(data)
+        // data.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
       },
       error: function(response){
           console.log("Request Failed");
