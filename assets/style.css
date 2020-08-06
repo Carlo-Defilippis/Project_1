@@ -1,6 +1,7 @@
 .header {
     padding: 50px;
     background-color: #2C2F33;
+    text-align: center;
 }
 
 .mainGrid {
@@ -22,7 +23,7 @@
     text-align: center;
 }
 
-.titleYouTube {
+.descriptionTitle2, .descriptionTitle3, .descriptionTitle1, .titleYouTube {
     background-color: #FF0000;
     border-radius: 10px;
 }
@@ -52,4 +53,5 @@ h1, h2, h3 {
 
 .three wide column {
     padding-top: 10px;
+    font-size: 100px;
 }
