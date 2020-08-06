@@ -6,15 +6,15 @@ $(document).ready(function () {
 
   // News API
 
-  function newsAPI(searchNews) {
-    var url = 'http://newsapi.org/v2/everything?' +
-      'q=' + searchNews + '&' +
-      'from=2020-07-20&' +
-      'sortBy=popularity&' +
-      'apiKey=0d168a90835246daa2bda323429401ad';
-    var req = new Request(url);
-    fetch(req)
-      .then(function (response) {
+function newsAPI(searchNews) {
+var url = 'https://newsapi.org/v2/everything?' +
+          'q='+ searchNews +'&' +
+          'from=2020-07-20&' +
+          'sortBy=popularity&' +
+          'apiKey=0d168a90835246daa2bda323429401ad';
+var req = new Request(url);
+fetch(req)
+    .then(function(response) {
         return response.json()
       }).then(function (myJson) {
         function callNews(myNews, myindex) {
@@ -61,9 +61,9 @@ $(document).ready(function () {
     });
   };
 
-  // YouTube API
-  var youtubeKey = "AIzaSyBWArvRjNr5f8PVu_tHo9gqX35bWgx6PSM"
-  var urlYoutube = "https://www.googleapis.com/youtube/v3/search?part=id&q=tuto&type=video&key=" + youtubeKey
+// YouTube API
+var youtubeKey = "AIzaSyCSuna94qQpTpkpN7MMm27lAdPnPgOjJ5U"
+var urlYoutube = "https://www.googleapis.com/youtube/v3/search?part=id&q=tuto&type=video&key=" + youtubeKey
 
   // Youtube request Function
   function getVideo(searchInfo) {
