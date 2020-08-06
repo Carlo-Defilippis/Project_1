@@ -1,9 +1,11 @@
+.htmlbody{
+background-color: #2C2F33;
+}
 .header {
     padding: 50px;
     background-color: #2C2F33;
     text-align: center;
 }
-
 
 a:link {
     color:#2C2F33;
@@ -86,6 +88,7 @@ a:link {
 .descriptionTitle2, .descriptionTitle3, .descriptionTitle1, .titleYouTube, .titleYouTubeTop {
     background-color: #FF0000;
     border-radius: 10px;
+    color: white;
 }
 
 
@@ -114,4 +117,8 @@ h1, h2, h3 {
 .three wide column {
     padding-top: 10px;
     font-size: 100px;
+}
+
+.ui, .grid {
+    background-color: #2C2F33
 }
