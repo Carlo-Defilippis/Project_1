@@ -7,11 +7,24 @@
 .mainGrid {
     background-color: whitesmoke; 
     padding-top: 50px;
+    margin: auto;
+    text-align: center;
 }
 
-.Twitter {
-    background-color: #1DA1F2;
+.newsCard {
+    background-color: #1a73e8;
     color: white;
+}
+
+.textNews {
+    text-decoration: underline;
+}
+
+.imageNews {
+    width: 150px;
+    height: auto;
+    margin: auto;
+    border-radius: 5px;
 }
 
 .GIPHY {
