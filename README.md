@@ -12,6 +12,6 @@ API's being used
 
 # 3rd Party API
 
-* Twitter RSS
-* https://rapidapi.com/e1yr/api/twitter-rss
+* News API
+* http://newsapi.org/v2/
 
