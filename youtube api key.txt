@@ -1,4 +1,15 @@
+Carlo
 AIzaSyAVriwBT3wQUQzFJiOOpr1P2e2KImIc5o0
+
+Hema
+AIzaSyBWArvRjNr5f8PVu_tHo9gqX35bWgx6PSM
+
+PapiChulo
+AIzaSyCSuna94qQpTpkpN7MMm27lAdPnPgOjJ5U
 
 news api
 0d168a90835246daa2bda323429401ad
+
+https://media3.giphy.com/media/ + GifID + /giphy.gif
+
+https://i.giphy.com/media/+ GifID +/giphy.webp

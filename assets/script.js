@@ -7,7 +7,7 @@ const reqOptions = { 'mode': 'cors', headers: { 'Access-Control-Allow-Origin': '
 // News API
 
 function newsAPI(searchNews) {
-var url = 'http://newsapi.org/v2/everything?' +
+var url = 'https://newsapi.org/v2/everything?' +
           'q='+ searchNews +'&' +
           'from=2020-07-20&' +
           'sortBy=popularity&' +
