@@ -5,12 +5,34 @@
 }
 
 
+a:link {
+    color:#2C2F33;
+  }
+  
+ 
+  a:visited {
+    color: #2C2F33;
+  }
+  
+
+  a:hover {
+    color: #2C2F33;
+  }
+  
+
+  a:active {
+    color: #2C2F33;
+  }
 
 .mainGrid {
     background-color: whitesmoke; 
     padding-top: 50px;
     margin: auto;
     text-align: center;
+}
+
+.news {
+    color: #1a73e8;
 }
 
 .newsCard {
@@ -23,22 +45,45 @@
 }
 
 .imageNews {
-    width: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 320px;
     height: auto;
-    margin: auto;
     border-radius: 5px;
 }
 
 .GIPHY {
     background-color: rgba(18,18,18,1);
-    color: white;
+    color: rgba(18,18,18,1);
+}
+
+.imageGIPHY {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 320px;
+    height: auto;
+    border-radius: 5px
 }
 
 .YouTube {
-    text-align: center;
+    text-align: center;    
 }
 
-.descriptionTitle2, .descriptionTitle3, .descriptionTitle1, .titleYouTube {
+.titleYouTubeTop {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-top: -20px;
+}
+
+.titleYouTube {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-top: 0px;
+}
+
+.descriptionTitle2, .descriptionTitle3, .descriptionTitle1, .titleYouTube, .titleYouTubeTop {
     background-color: #FF0000;
     border-radius: 10px;
 }
