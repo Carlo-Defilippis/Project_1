@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
 
-const reqOptions = { 'mode': 'cors', headers: { 'Access-Control-Allow-Origin': '*' } };
+// const reqOptions = { 'mode': 'cors', headers: { 'Access-Control-Allow-Origin': '*' } };
 
 
 // News API
