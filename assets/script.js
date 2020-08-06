@@ -7,19 +7,15 @@ $(document).ready(function () {
 // News API
 
 function newsAPI(searchNews) {
-var url = 'https://newsapi.org/v2/everything?' +
-          'q='+ searchNews +'&' +
-          'from=2020-07-20&' +
-          'sortBy=popularity&' +
-          'apiKey=0d168a90835246daa2bda323429401ad';
-var req = new Request(url);
-fetch(req)
+fetch('https://gnews.io/api/v3/search?q='+ searchNews +'&token=26d47a5cad96638b74a37c85fd3903b9&max=3')
     .then(function(response) {
+        console.log("This is the response: ", response)
         return response.json()
     }).then(function(myJson) {
+
         function callNews(myNews, myindex) {
                   var title = myNews.articles[myindex].title
-                  var image = myNews.articles[myindex].urlToImage
+                  var image = myNews.articles[myindex].image
                   var articleText = myNews.articles[myindex].description
                   var link = myNews.articles[myindex].url
                   var timeAgo = myNews.articles[myindex].publishedAt
