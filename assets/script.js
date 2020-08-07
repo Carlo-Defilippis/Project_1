@@ -58,7 +58,7 @@ $.ajax(settings).done(function (response) {
 };
 
 // YouTube API
-var youtubeKey = "AIzaSyCSuna94qQpTpkpN7MMm27lAdPnPgOjJ5U"
+var youtubeKey = "AIzaSyAVriwBT3wQUQzFJiOOpr1P2e2KImIc5o0"
 var urlYoutube = "https://www.googleapis.com/youtube/v3/search?part=id&q=tuto&type=video&key=" + youtubeKey
 
 // Youtube request Function
