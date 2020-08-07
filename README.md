@@ -13,5 +13,5 @@ API's being used
 # 3rd Party API
 
 * News API
-* http://newsapi.org/v2/
+* https://gnews.io/dashboard
 
